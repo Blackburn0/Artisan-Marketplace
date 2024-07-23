@@ -1,0 +1,56 @@
+{% extends "marketplace/base.html" %}
+
+{% block content %}
+<div class="container mx-auto py-12">
+    <h2 class="text-4xl font-bold mb-4">Store</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for product in available_product %}
+        <div class="bg-white p-6 rounded shadow">
+            <img src="{{ product.picture.url }}" alt="{{ product.name }}" class="mb-4 w-full h-48 object-cover">
+            <h3 class="text-2xl font-bold mb-2">{{ product.name }}</h3>
+            <p class="mb-2">{{ product.detail }}</p>
+            <p class="mb-2">Available: {{ product.available_quantity }}</p>
+            <p class="mb-2">Category: {{ product.category }}</p>
+            <p class="mb-2 font-bold">Price: ₦{{ product.price_per_unit }}</p>
+            <a href="#" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Buy Now</a>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Pagination controls -->
+    <div class="mt-8">
+        <nav class="flex justify-center">
+            <ul class="inline-flex -space-x-px">
+                {% if page_obj.has_previous %}
+                <li>
+                    <a href="?page=1" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">First</a>
+                </li>
+                <li>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">Previous</a>
+                </li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                <li>
+                    <a href="?page={{ num }}" class="py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-gray-300">{{ num }}</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="?page={{ num }}" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ num }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">Next</a>
+                </li>
+                <li>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">Last</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+
+{% endblock content %}
+

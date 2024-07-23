@@ -1,0 +1,31 @@
+{% extends "marketplace/base.html" %}
+{% block content %}
+  <!-- Main Content -->
+  <main class="flex-grow">
+
+    {% include "marketplace/header.html" %}
+
+    <section class="container mx-auto py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-2xl font-bold mb-4">Product 1</h3>
+          <p class="mb-4">This is a great product.</p>
+          <a href="#" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Buy Now</a>
+        </div>
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-2xl font-bold mb-4">Product 2</h3>
+          <p class="mb-4">This is another great product.</p>
+          <a href="#" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Buy Now</a>
+        </div>
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-2xl font-bold mb-4">Product 3</h3>
+          <p class="mb-4">This is yet another great product.</p>
+          <a href="#" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Buy Now</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+{% endblock content %}
+
+
