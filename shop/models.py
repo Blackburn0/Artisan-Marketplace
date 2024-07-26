@@ -9,7 +9,8 @@ class User(AbstractUser):
         ('F', 'Female'),
     ]
     gender = models.CharField(blank=False, max_length=6, choices=GENDER)
-    address = models.CharField(blank=False, max_length=250)
+    profile_image = models.ImageField(upload_to="profile_images", blank=True, null=True)
+    address = models.CharField(max_length=250)
     is_vendor = models.BooleanField(default=False)
 
 # class Vendor(models.Model):
