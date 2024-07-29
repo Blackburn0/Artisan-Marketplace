@@ -1,10 +1,9 @@
-from django.shortcuts import get_object_or_404
 from django.contrib.auth import logout
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView
-from .models import User
-from .forms import UserRegistrationForm, UserProfileUpdateForm
+from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DetailView, DeleteView
+from .models import User, Vendor
+from .forms import UserRegistrationForm, UserProfileUpdateForm, VendorRegistrationForm
 from django.contrib.auth.views import LoginView
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -46,3 +45,27 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self):
         return self.request.user
+
+class UserProfileDeleteView(LoginRequiredMixin, DeleteView):
+    model = User
+    template_name = 'user/user_confirm_delete.html'
+    success_url = reverse_lazy("home")
+
+    def get_object(self):
+        # Return the current logged-in user
+        return self.request.user
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.success_url)
+    
+
+
+
+
+class VendorRegisterView(CreateView):
+    model = Vendor
+    form_class = VendorRegistrationForm
+    template_name = 'vendor/register_vendor.html'
+    success_url = reverse_lazy('login')
