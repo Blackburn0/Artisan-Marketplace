@@ -1,0 +1,6 @@
+  <h1>Confirm Account Deletion</h1>
+  <p>Are you sure you want to delete your account?</p>
+  <form method="post">{% csrf_token %}
+    <button type="submit">Yes, delete my account</button>
+    <a href="{% url 'vendor_profile' %}">Cancel</a>
+  </form>

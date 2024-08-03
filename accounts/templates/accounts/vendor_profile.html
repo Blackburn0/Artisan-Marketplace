@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vendor Profile</title>
+</head>
+<body>
+    <h2>Vendor Profile</h2>
+    <p>Username: {{ object.user.username }}</p>
+    <p>Email: {{ object.user.email }}</p>
+    <p>Company Name: {{ object.company_name }}</p>
+    <p>Phone: {{ object.phone }}</p>
+    <a href="{% url 'vendor_profile_update' %}">Edit Profile</a>
+    <a href="{% url 'vendor_logout' %}">Logout</a>
+    <a href="{% url 'vendor_password_change' %}">Change password</a>
+    <a href="{% url 'vendor_password_reset' %}">Reset password</a>
+    <a href="{% url 'vendor_profile_delete' %}">Delete Profile</a>
+
+</body>
+</html>
